@@ -25,9 +25,9 @@ _(vuepress-plugin-fulltext-search [610de90](https://github.com/leo-buneev/vuepre
 #### custom encoder 및 tokenizer 정의
 
 - 필요에 따라 encoder 및 tokenizer를 정의하였다.
-- **encoder,**
+- encoder,
    - `#`, `space`, `tab`, `line split` 문자들을 space로 변경하고, 중첩 space를 단일 space로 변경
-- **tokenizer,**
+- tokenizer,
    - space 기준으로 분리하고
    - 분리된 단위를 flexsearch 내 forward 방식으로 분리하였다.
    
