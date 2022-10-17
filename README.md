@@ -1,6 +1,6 @@
 # vuepress-plugin-fulltext-search-korean
 
-**[vuepress-plugin-fulltext-search](https://github.com/leo-buneev/vuepress-plugin-fulltext-search) 바탕으로 한국어 정상 동작을 위해 추가 작업을 진행하였습니다.**
+**[leo-buneev](https://github.com/leo-buneev)님의 프로젝트 [vuepress-plugin-fulltext-search](https://github.com/leo-buneev/vuepress-plugin-fulltext-search)를 바탕으로 한국어 정상 동작을 위해 추가 작업을 진행하였습니다.**
 
 _(vuepress-plugin-fulltext-search [610de90](https://github.com/leo-buneev/vuepress-plugin-fulltext-search/commit/610de90389a84cc3cc9056b7b6a464959be4b5e0) 기준 추가 작업 진행)_
 
