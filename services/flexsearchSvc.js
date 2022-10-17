@@ -47,20 +47,24 @@ export default {
           return str
         },
         tokenize: function(str) {
-          let cjkWords = [] 
-          let splitted
-          // 1. 띄어쓰기 기준으로 분리한다.
-          splitted = str.split(" ")
-          cjkWords = cjkWords.concat(splitted)
-          
-          // 2. 분리된 부분을 글자 단위로 분리한다.
+          // 검색에 사용될 문자정보
+          const cjkWords = [];
+          const splitted = str.split(" ");
+          // 최대 앞에서 5글자만 검색에 사용
+          const maxStart = Math.min(splitted.length, 5);
+          // 앞에서 최대 10글자만 ngram 처리
+          const maxLength = 10;
           splitted.forEach(elem => {
-            const maxStart = 5
-            const maxLength = 10
-            for (var s = 0; s < elem.length && s < maxStart; s++) {
-              for (var l = 1; l <= elem.length - s && l <= maxLength ; l++) {
-                cjkWords.push(elem.substr(s, l))
-              }
+
+            const minElemLength = Math.min(elem.length, maxLength);
+            for( let s = 0; s < maxStart; s++ ) {
+                for ( let l = 1; s+l <= minElemLength ; l++) {
+                    cjkWords.push(elem.substr(s, l));
+                }
+            }
+            // 만약 elem.length가 maxLength 보다 클 경우에는 cjkWords 에 elem만 추가해줌 ( elem이 중복해서 들어가지 않도록 처리 )
+            if(maxLength <  elem.length) {
+                cjkWords.push(elem);
             }
           });
           

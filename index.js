@@ -4,7 +4,7 @@ const _ = require('lodash')
 
 let customTitles = null
 
-module.exports = (options, ctx, globalCtx) => ({
+module.exports = (options, context, globalCtx) => ({
   extendPageData($page) {
     try {
       const { html } = $page._context.markdown.render($page._strippedContent || '')
@@ -56,6 +56,7 @@ module.exports = (options, ctx, globalCtx) => ({
 function getCustomTitles(globalCtx) {
   try {
     const sidebarConfig = _.get(globalCtx, '_pluginContext.themeConfig.sidebar')
+
     if (!sidebarConfig) return {}
 
     let sidebars = [sidebarConfig]
