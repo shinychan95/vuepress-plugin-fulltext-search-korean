@@ -4,36 +4,33 @@
 
 _(vuepress-plugin-fulltext-search [610de90](https://github.com/leo-buneev/vuepress-plugin-fulltext-search/commit/610de90389a84cc3cc9056b7b6a464959be4b5e0) 기준 추가 작업 진행)_
 
-## 추가로 진행한 부분
+## 추가 작업한 부분
 
-### UI 단순하게 변경
+### 1. UI 단순하게 변경
 
 ![UI](https://user-images.githubusercontent.com/39409255/194307055-3c86af7f-abb0-4619-9142-e7aee09901d8.png)
 
-### 한국어 검색을 위한 처리
+### 2. 한국어 검색을 위한 처리
 
-#### 1. string normalization 제거
+#### string normalization 제거
 
-기존 `vuepress-plugin-fulltext-search`은 내부적으로 아래와 같이 동작하였다.
-- 색인을 생성할 때는 normalization 처리되지 않은 content 사용
-- 검색 질의는 normalization 처리되지 않은 문자열 사용
-- 하이라이팅 관련 로직에서는 질의 및 content를 normalization 처리된 문자열 사용
+- 기존 `vuepress-plugin-fulltext-search`은 내부적으로 아래와 같이 동작하였다.
+   - 색인을 생성할 때는 normalization 처리되지 않은 content 사용
+   - 검색 질의는 normalization 처리되지 않은 문자열 사용
+   - 하이라이팅 관련 로직에서는 질의 및 content를 normalization 처리된 문자열 사용
 
-결론적으로 검색은 정상적이나 하이라이팅이 정상적이지 않아, 우선 normalization 처리를 모두 제거하는 방향으로 통일
+- 즉, 검색은 정상적이나 하이라이팅이 정상적이지 않아, 우선 normalization 처리를 모두 제거하는 방향으로 통일
+   - _(추후 normailzation 제거로 인한 부가적인 문제 해결 예정)_
 
-_(추후 normailzation 제거로 인한 부가적인 문제 해결 예정)_
+#### custom encoder 및 tokenizer 정의
 
-#### 2. custom encoder 및 tokenizer 정의
-
-필요에 따라 encoder 및 tokenizer를 정의하였다.
-
-**encoder,**
-- `#`, `space`, `tab`, `line split` 문자들을 space로 변경하고, 중첩 space를 단일 space로 변경
-
-**tokenizer,**
-- space 기준으로 분리하고
-- 분리된 단위를 flexsearch 내 forward 방식으로 분리하였다.
-
+- 필요에 따라 encoder 및 tokenizer를 정의하였다.
+- encoder,
+   - `#`, `space`, `tab`, `line split` 문자들을 space로 변경하고, 중첩 space를 단일 space로 변경
+- tokenizer,
+   - space 기준으로 분리하고
+   - 분리된 단위를 flexsearch 내 forward 방식으로 분리하였다.
+   
 ## Usage
 
 First, install plugin.
